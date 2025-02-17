@@ -8,19 +8,15 @@ int main(void){
     int status;
 
     pid = fork();
-    if(pid == 0){
-        execl("/bin/mkdir", "mkdir", "newdir", NULL);
-        perror("execl");
-        exit(1);
+    
+    if (pid == 0){
+        execl("/bin/mkdir", "mkdir", "Operating System", NULL);
+        perror("Child process failed to exec!");
+        return 1;
     }
-    else if(pid > 0){
-        wait(&status);
-        printf("Parent process\n");
-        printf("Child process is done\n");
-    }
-    else{
-        perror("fork");
-        exit(1);
+    if (pid != wait(NULL)){
+        perror("Parent process failed to wait due to signal or error!");
+        return 1;
     }
     return 0;
 }
