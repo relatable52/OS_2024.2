@@ -10,7 +10,7 @@ int main(void){
     pid = fork();
     
     if (pid == 0){
-        execl("/bin/mkdir", "mkdir", "Operating System", NULL);
+        execl("/bin/mkdir", "mkdir", "OperatingSystem", NULL);
         perror("Child process failed to exec!");
         return 1;
     }
